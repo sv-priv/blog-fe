@@ -4,10 +4,10 @@ import ShowCategory from './ShowCategory';
 
 const ListCategories = () => {
     return (
-        <div className="container">
-
+        <div style={{paddingTop: '5%'}} className="container">
             <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center">
-                <h1>CATEGORIES</h1>
+            <h3>CATEGORIES</h3>
+
                 <button className="btn btn-primary text-light"><Link to="/categories/add" style={{ textDecoration: 'none', color: 'white' }}>Add Category</Link></button>
             </div>
 
