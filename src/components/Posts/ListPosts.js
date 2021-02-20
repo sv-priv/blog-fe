@@ -15,7 +15,7 @@ class ListPosts extends React.Component{
 
         const token = localStorage.getItem('token');
 
-        axios.get('http://blog-loka-be.herokuapp.com/api/posts/', {
+        axios.get('https://blog-loka-be.herokuapp.com/api/posts/', {
             headers: {
                 Authorization: token
             }
@@ -35,7 +35,7 @@ class ListPosts extends React.Component{
 
         const token = localStorage.getItem('token');
 
-        axios.get('http://blog-loka-be.herokuapp.com/api/posts/', {
+        axios.get('https://blog-loka-be.herokuapp.com/api/posts/', {
             headers: {
                 Authorization: token
             }

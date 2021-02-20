@@ -20,7 +20,7 @@ class ShowCategoryPosts  extends React.Component{
 
         const token = localStorage.getItem('token');
 
-        axios.get(`http://blog-loka-be.herokuapp.com/api/categories/category-posts/${id}`, {
+        axios.get(`https://blog-loka-be.herokuapp.com/api/categories/category-posts/${id}`, {
             headers: {
                 Authorization: token
             }

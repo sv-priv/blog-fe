@@ -30,7 +30,7 @@ class Register extends React.Component{
         const password = event.target.elements.password.value;
         // const token = event.target.elements.token.value;
 
-        axios.post('http://blog-loka-be.herokuapp.com/api/auth/register', { username , password })
+        axios.post('https://blog-loka-be.herokuapp.com/api/auth/register', { username , password })
         .then((resp) => {
             console.log(resp.data.token);
             localStorage.setItem('token', resp.data.token )
