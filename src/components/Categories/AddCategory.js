@@ -28,7 +28,7 @@ class AddCategory extends React.Component{
         const token = localStorage.getItem('token');
 
 
-        axios.post('http://localhost:3000/api/categories/new', {name}, {
+        axios.post('http://blog-loka-be.herokuapp.com/api/categories/new', {name}, {
              headers: {
                 Authorization: token
             }

@@ -21,7 +21,7 @@ class AddPost extends React.Component {
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
 
-        axios.get('http://localhost:3000/api/categories/', {
+        axios.get('http://blog-loka-be.herokuapp.com/api/categories/', {
                 headers: {
                     Authorization: token
                 }
@@ -65,7 +65,7 @@ class AddPost extends React.Component {
 
         const token = localStorage.getItem('token');
 
-        axios.post('http://localhost:3000/api/posts/new', { title, content, CategoryId },{
+        axios.post('http://blog-loka-be.herokuapp.com/api/posts/new', { title, content, CategoryId },{
         headers: {
             Authorization: token
         }

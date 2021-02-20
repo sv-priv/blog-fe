@@ -31,7 +31,7 @@ class Login extends React.Component{
         const password = event.target.elements.password.value;
         // const token = event.target.elements.token.value;
 
-        axios.post('http://localhost:3000/api/auth/login', { username , password })
+        axios.post('http://blog-loka-be.herokuapp.com/api/auth/login', { username , password })
         .then((resp) => {
             console.log(resp);
             // console.log(resp.data[0].token);
