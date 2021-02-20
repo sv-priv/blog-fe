@@ -36,7 +36,7 @@ class AddCategory extends React.Component{
         .then((resp) => {
             console.log(resp);
             console.log("Category created");
-            this.props.history.push("/posts");
+            this.props.history.push("/categories");
         }
         ).catch(e => console.log(e));
 

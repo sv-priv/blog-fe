@@ -13,7 +13,7 @@ class ShowPostNoCategory extends React.Component{
             title: this.props.data.title,
             content: this.props.data.content,
         }
-        console.log(this.props.data.title);
+        // console.log(this.props.data.title);
 
 
     }

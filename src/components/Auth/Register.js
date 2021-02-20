@@ -32,7 +32,7 @@ class Register extends React.Component{
 
         axios.post('https://blog-loka-be.herokuapp.com/api/auth/register', { username , password })
         .then((resp) => {
-            console.log(resp.data.token);
+            // console.log(resp.data.token);
             localStorage.setItem('token', resp.data.token )
             this.props.history.push("/posts");
 

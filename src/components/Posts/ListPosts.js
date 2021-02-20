@@ -22,7 +22,7 @@ class ListPosts extends React.Component{
         }).then(response =>{
 
                 this.setState({posts: response.data})
-                console.log(this.state.posts);
+                // console.log(this.state.posts);
                 // console.log(response.data);
         });
 

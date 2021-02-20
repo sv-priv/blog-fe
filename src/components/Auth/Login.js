@@ -33,7 +33,7 @@ class Login extends React.Component{
 
         axios.post('https://blog-loka-be.herokuapp.com/api/auth/login', { username , password })
         .then((resp) => {
-            console.log(resp);
+            // console.log(resp);
             // console.log(resp.data[0].token);
             localStorage.setItem('token', resp.data[0].token )
             this.props.history.push("/posts");
