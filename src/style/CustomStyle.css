@@ -1,0 +1,48 @@
+.btn-primary {
+    background-color: #6B9362;
+    border-color: #6B9362;
+}
+
+
+.btn-primary:hover {
+    background-color: #8DB255;
+    border-color: #8DB255;
+}
+
+.btn-primary:active {
+    background-color: green;
+    border-color: green;
+}
+.btn-primary:visited {
+    background-color: green;
+    border-color: green;
+}
+.btn:visited {
+    background-color: green;
+    border-color: green;
+}
+.btn:active:focus {
+    background-color: green;
+    border-color: green;
+
+}
+.btn:link {
+    background-color: green;
+    border-color: green;
+
+}
+.btn:active{
+    background-color: green !important;
+    border-color: green;
+}
+a{
+    /* background-color: green !important; */
+    /* border-color: green; */
+    color:#6B9362;
+}
+a:hover{
+    /* background-color: green !important; */
+    /* border-color: green; */
+    color:#8DB255
+}
+/* button:focus{background-color:red;} */

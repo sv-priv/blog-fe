@@ -25,7 +25,7 @@ class ShowPost extends React.Component{
         return (
 
             <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center " >
-                <div className="card text-center"  style={{ margin: "3%", minWidth:"400px", minHeight:"200px"}}>
+                <div className="card text-center"  style={{ margin: "3%", minWidth:"500px", minHeight:"200px", maxWidth: "500px"}}>
                     <div className="card-header">
                         <h4>{ this.state.title } </h4>
                     </div>

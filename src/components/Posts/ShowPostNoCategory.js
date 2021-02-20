@@ -23,7 +23,7 @@ class ShowPostNoCategory extends React.Component{
         return (
 
             <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center " >
-                <div className="card text-center"  style={{ margin: "3%", minWidth:"300px", minHeight:"150px"}}>
+                <div className="card text-center"  style={{ margin: "3%", minWidth:"350px", minHeight:"150px",minWidth:"350px" }}>
                     <div className="card-header">
                         { this.state.title }
                     </div>

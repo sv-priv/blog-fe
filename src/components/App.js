@@ -10,6 +10,9 @@ import ShowPost from './Posts/ShowPost'
 import Error from './Error/Error'
 import Header from './Shared/Header';
 import 'bootstrap/dist/css/bootstrap.css'
+import '../style/CustomStyle.css';
+
+
 import ShowCategoryPosts from './Categories/ShowCategoryPosts';
 
 const App = () =>{

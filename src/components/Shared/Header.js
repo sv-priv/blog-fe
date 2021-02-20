@@ -25,7 +25,7 @@ class Header extends React.Component{
                         </li>
                        </ul>
                      <Link to="/login"> <button className="btn btn-primary" type="submit">Login</button></Link>
-                     <Link to="/logout"> <button className="btn btn-primary" type="submit">Logout</button></Link>
+                     <Link  style= {{ margin:"1%"}} to="/logout"> <button className="btn btn-primary" type="submit">Logout</button></Link>
                    </div>
                 </nav>
              </div>
