@@ -25,10 +25,12 @@ class AddCategory extends React.Component{
         });
 
         const name = event.target.elements.name.value;
+        const token = localStorage.getItem('token');
+
 
         axios.post('http://localhost:3000/api/categories/new', {name}, {
              headers: {
-                Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
+                Authorization: token
             }
         })
         .then((resp) => {

@@ -8,12 +8,24 @@ class Logout extends React.Component{
     constructor(props){
         super(props);
 
+        localStorage.setItem('token', null);
 
     }
 
     render(){
 
-        this.props.history.push("/login");
+
+       return  (
+           <div>
+               <h3>Logging out..</h3>
+
+        {this.props.history.push("/login")}
+
+           </div>
+
+       )
     }
 
 }
+
+export default Logout;

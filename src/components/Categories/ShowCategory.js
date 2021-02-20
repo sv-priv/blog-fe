@@ -23,6 +23,9 @@ class ShowCategory  extends React.Component{
     }
 
     render(){
+
+
+        // if(localStorage.getItem(''))
         return(
         <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center " >
             <div className="card text-center" style={{ margin: "3%", minWidth:"300px", minHeight:"100px"}}>
@@ -32,8 +35,6 @@ class ShowCategory  extends React.Component{
                 <div className="card-body">
                     <p>Number of posts: { this.state.postsNum }</p>
                     <Link to={{ pathname: "/categories/show-category-posts", state: { id: this.state.id} }}> <h5 className="card-title"></h5>Visit category</Link>
-
-                    {/* <a href="#" className="btn btn-primary"></a> */}
                 </div>
             </div>
         </div>

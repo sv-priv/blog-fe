@@ -7,7 +7,30 @@ import { Link }  from 'react-router-dom';
 
 class Header extends React.Component{
 
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            token: false
+        }
+
+
+    }
+
+    componentDidUpdate(){
+
+        const token = localStorage.getItem('token');
+
+        if(localStorage.getItem('token') !== null){
+
+            this.setState({token : true})
+
+        }
+    }
+
     render(){
+
         return (
             <div className="container">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,8 +47,10 @@ class Header extends React.Component{
                             <Link to= "/categories" className="navbar-brand" >Categories</Link>
                         </li>
                        </ul>
-                     <Link to="/login"> <button className="btn btn-primary" type="submit">Login</button></Link>
-                     <Link  style= {{ margin:"1%"}} to="/logout"> <button className="btn btn-primary" type="submit">Logout</button></Link>
+                       <Link to="/login"> <button className="btn btn-primary" type="submit">Login</button></Link>
+                        <Link  style= {{ margin:"1%"}} to="/logout"> <button className="btn btn-primary" type="submit">Logout</button></Link>
+
+
                    </div>
                 </nav>
              </div>

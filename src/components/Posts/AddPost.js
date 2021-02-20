@@ -16,12 +16,14 @@ class AddPost extends React.Component {
             data: null,
             categories: []
         }
+        const token = localStorage.getItem('token');
+
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
 
         axios.get('http://localhost:3000/api/categories/', {
                 headers: {
-                    Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
+                    Authorization: token
                 }
             }).then(response =>{
                     this.setState({data: response.data})
@@ -61,11 +63,11 @@ class AddPost extends React.Component {
         const content = event.target.elements.content.value;
         const CategoryId = event.target.elements.category.value;
 
-        console.log(CategoryId);
+        const token = localStorage.getItem('token');
 
         axios.post('http://localhost:3000/api/posts/new', { title, content, CategoryId },{
         headers: {
-            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
+            Authorization: token
         }
         })
         .then((resp) => {

@@ -18,9 +18,11 @@ class ShowCategoryPosts  extends React.Component{
             name: null
         }
 
+        const token = localStorage.getItem('token');
+
         axios.get(`http://localhost:3000/api/categories/category-posts/${id}`, {
             headers: {
-                Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
+                Authorization: token
             }
         }).then(response =>{
 

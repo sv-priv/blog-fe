@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect , Link} from 'react-router-dom';
-import { createBrowserHistory } from "history";
+import { Redirect, Link } from 'react-router-dom';
 
 
-class Login extends React.Component{
+class Register extends React.Component{
 
     constructor(props){
         super(props);
@@ -31,11 +30,10 @@ class Login extends React.Component{
         const password = event.target.elements.password.value;
         // const token = event.target.elements.token.value;
 
-        axios.post('http://localhost:3000/api/auth/login', { username , password })
+        axios.post('http://localhost:3000/api/auth/register', { username , password })
         .then((resp) => {
-            console.log(resp);
-            // console.log(resp.data[0].token);
-            localStorage.setItem('token', resp.data[0].token )
+            console.log(resp.data.token);
+            localStorage.setItem('token', resp.data.token )
             this.props.history.push("/posts");
 
         }
@@ -53,18 +51,19 @@ class Login extends React.Component{
                 <br></br>
                 <form style={{ margin: "10%" }} onSubmit = { this.onFormSubmit }>
                     <div className="form-group">
-                    <h3 >Login to enter the blog!</h3>
+                    <h3 >Register to enter the blog!</h3>
 
                         <label htmlFor="username">Username</label>
                         <input type="text" className="form-control" name="username" required placeholder="Enter username.."/>
+                        <small  className="form-text text-muted">You must have an unique username</small>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" name="password" required placeholder="Password.."/>
                     </div>
-                    <button type="submit" className="btn btn-primary" >Login</button>
-                    <h6>Don't have an account?  <Link to="/register" >Register</Link></h6>
+                    <button type="submit" className="btn btn-primary" >Register</button>
 
+                    <h6>Already have an account?  <Link to="/login" >Login</Link></h6>
                 </form>
 
             </div>
@@ -77,4 +76,4 @@ class Login extends React.Component{
 
 
 
-export default Login;
+export default Register;
