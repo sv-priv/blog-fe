@@ -21,7 +21,7 @@ class AddPost extends React.Component {
 
         axios.get('http://localhost:3000/api/categories/', {
                 headers: {
-                    Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzY2NjY1NX0.y8OJ7EYbt4Xk-E_QJTDL3lXgTYoo_JGT0XXQk_BxWNs'
+                    Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
                 }
             }).then(response =>{
                     this.setState({data: response.data})
@@ -35,15 +35,11 @@ class AddPost extends React.Component {
                                 id: response.data[i].id,
                                 name: response.data[i].name
 
-                            })
-
+                            });
                     }
                     this.setState({categories: categoriesData})
-
-                    console.log(categoriesData);
-
-                    console.log(response.data);
-
+                    // console.log(categoriesData);
+                    // console.log(response.data);
             });
 
     }
@@ -59,7 +55,6 @@ class AddPost extends React.Component {
             content: event.target.elements.content.value,
             category: event.target.elements.category.value,
 
-
         })
 
         const title = event.target.elements.title.value;
@@ -70,7 +65,7 @@ class AddPost extends React.Component {
 
         axios.post('http://localhost:3000/api/posts/new', { title, content, CategoryId },{
         headers: {
-            Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzY2NjY1NX0.y8OJ7EYbt4Xk-E_QJTDL3lXgTYoo_JGT0XXQk_BxWNs'
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
         }
         })
         .then((resp) => {
@@ -83,25 +78,28 @@ class AddPost extends React.Component {
     }
 
     render(){
-        //on update get a list from the categories and render that list
-        // value  == categoryId
-        // option that shows == category name
         return (
             <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center" >
-                <form style={{margin: "8%"}} onSubmit={ this.onFormSubmit }>
-                    <h3>Add new post </h3>
+
+                <form style={{margin: "5%"}} onSubmit={ this.onFormSubmit }>
+
+                    <h3 style={{ margin: "6%", textAlign: "center"}} >Add new post </h3>
+
                     <div className="form-group" >
                         <label htmlFor="title">Title</label>
                         <input type="text" className="form-control" name="title" required placeholder="Post Title.."/>
                      </div>
+
                     <div className="form-group">
                          <label htmlFor="content">Content</label>
                          <textarea className="form-control" name="content" rows="4" required placeholder="What's on your mind.."></textarea>
                     </div>
+
                     <div className="form-group">
 
                         <label htmlFor="category">Category</label>
                         <select className="form-control" name="category" required>
+
                             {
                                 this.state.categories.map((option) => (
                                 <option value={option.id}>{ option.name }</option>
@@ -110,12 +108,12 @@ class AddPost extends React.Component {
 
                         </select>
                     </div>
+
                     <button className="btn btn-primary text-light">Add</button>
                  </form>
             </div>
             //when post is added setTimeout to write that a post has been added and redirect to posts page
             // same for add
-
         );
     }
 }

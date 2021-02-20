@@ -45,7 +45,7 @@ class Login extends React.Component{
             <div  className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center" >
 
                 <br></br>
-                <form style={{margin: "10%"}} onSubmit = { this.onFormSubmit }>
+                <form style={{ margin: "10%" }} onSubmit = { this.onFormSubmit }>
                     <div className="form-group">
                     <h3 >Login to enter the blog!</h3>
 

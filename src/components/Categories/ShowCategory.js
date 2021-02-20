@@ -1,5 +1,6 @@
 import React from 'react';
 import axios  from 'axios'
+import { Link } from 'react-router-dom'
 
 //prakjam props onClick od parent ListPosts to ShowCategory with the category id
 
@@ -11,30 +12,28 @@ class ShowCategory  extends React.Component{
         super(props);
 
         // const id = this.props.id;
-        const id=1;
+        this.state ={
+            name: this.props.data.name,
+            postsNum: this.props.data.Posts.length,
+            id: this.props.data.id
+        }
 
-        axios.get(`http://localhost:3000/api/categories/category-posts/:${id}`, {
-            headers: {
-                Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzY2NjY1NX0.y8OJ7EYbt4Xk-E_QJTDL3lXgTYoo_JGT0XXQk_BxWNs'
-            }
-        }).then(response =>{
+        console.log(this.state.postsNum);
 
-                // this.setState({data: response.data})
-                // console.log(this.state.data.length);
-                console.log(response);
-        });
     }
 
     render(){
         return(
         <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center " >
-            <div className="card text-center">
+            <div className="card text-center" style={{ margin: "3%", minWidth:"300px", minHeight:"100px"}}>
                 <div className="card-header">
-                    Category number: x
+                    {this.state.name}
                 </div>
                 <div className="card-body">
-                    <h5 className="card-title"></h5>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                    <p>Number of posts: { this.state.postsNum }</p>
+                    <Link to={{ pathname: "/categories/show-category-posts", state: { id: this.state.id} }}> <h5 className="card-title"></h5>Visit category</Link>
+
+                    {/* <a href="#" className="btn btn-primary"></a> */}
                 </div>
             </div>
         </div>

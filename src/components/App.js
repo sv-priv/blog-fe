@@ -10,6 +10,7 @@ import ShowPost from './Posts/ShowPost'
 import Error from './Error/Error'
 import Header from './Shared/Header';
 import 'bootstrap/dist/css/bootstrap.css'
+import ShowCategoryPosts from './Categories/ShowCategoryPosts';
 
 const App = () =>{
     return(
@@ -23,6 +24,7 @@ const App = () =>{
                 <Route path= "/categories" exact component={ListCategories}/>
                 <Route path= "/categories/add" exact component={AddCategory}/>
                 <Route path= "/categories/show" exact component={ShowCategory}/>
+                <Route path= "/categories/show-category-posts" exact component={ShowCategoryPosts}/>
                 <Route path= "/login" exact component={Login}/>
                 {/* <Route path ="/*" exact component={Error}/> */}
 

@@ -28,7 +28,7 @@ class AddCategory extends React.Component{
 
         axios.post('http://localhost:3000/api/categories/new', {name}, {
              headers: {
-                Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzY2NjY1NX0.y8OJ7EYbt4Xk-E_QJTDL3lXgTYoo_JGT0XXQk_BxWNs'
+                Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN0ZWZhbiIsImlhdCI6MTYxMzc4MTcyOX0.O3zJWLlLvu9xQlRDSJcd3-NXsQh0d9mWAfUn_S9_yuw"
             }
         })
         .then((resp) => {
@@ -46,8 +46,8 @@ class AddCategory extends React.Component{
 
             <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center container" >
 
-                <form  style= {{margin: "10%"}} onSubmit= { this.onFormSubmit }>
-                <h3>Add Category</h3>
+                <form  style= {{margin: "5%"}} onSubmit= { this.onFormSubmit }>
+                <h3 style={{ margin: "6%", textAlign: "center"}} > Add Category</h3>
 
                     <div className="form-group">
                         <input type="text" className="form-control" name="name" required placeholder="Add Category.."/>
