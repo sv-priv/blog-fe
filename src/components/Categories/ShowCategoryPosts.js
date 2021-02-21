@@ -1,28 +1,40 @@
 import React from 'react';
+import {Link, Redirect} from 'react-router-dom';
 import axios  from 'axios'
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+
+
 import ShowPostNoCategory from '../Posts/ShowPostNoCategory'
 
 //prakjam props onClick od parent ListPosts to ShowCategory with the category id
 
 class ShowCategoryPosts  extends React.Component{
 
-    //this.props.id
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+      };
+
+
 
     constructor(props){
         super(props);
 
-        const {id} = props.location.state
+        // const {id} = this.props.location.data
 
         this.state = {
             posts: [],
             name: null
         }
 
-        const token = localStorage.getItem('token');
+        let id= this.props.location.params.id;
+        // console.log(id);
 
-        axios.get(`https://blog-loka-be.herokuapp.com/api/categories/category-posts/${id}`, {
+        axios.get(`http://localhost:3000/api/categories/category-posts/${id}`, {
             headers: {
-                Authorization: token
+                Authorization: this.props.token
             }
         }).then(response =>{
 
@@ -31,12 +43,13 @@ class ShowCategoryPosts  extends React.Component{
                      name: response.data.name
                     })
 
-                // console.log(this.state.data.length);
-                console.log(response.data);
         });
     }
 
     render(){
+
+        console.log("props from show-category-posts",this.props);
+
         return(
         <div className="container" >
             <div className="row" style={{ margin: "10%" }} >
@@ -55,4 +68,6 @@ class ShowCategoryPosts  extends React.Component{
         )}
 }
 
-export default ShowCategoryPosts;
+export default withRouter(ShowCategoryPosts);
+
+// const ShowTheLocationWithRouter = withRouter(ShowTheLocation);

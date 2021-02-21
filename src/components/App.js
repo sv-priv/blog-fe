@@ -14,37 +14,91 @@ import Register from  './Auth/Register'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../style/CustomStyle.css';
 import { createBrowserHistory } from "history";
-
-
-
 import ShowCategoryPosts from './Categories/ShowCategoryPosts';
-
-const App = () =>{
-    return(
-        <div>
-            <BrowserRouter>
-            <Header/>
-                <Route path= "/" exact component={ListPosts}/>
-                <Route path= "/posts" exact component={ListPosts}/>
-                <Route path= "/posts/add" exact component={AddPost}/>
-                <Route path= "/posts/show" exact component={ShowPost}/>
-                <Route path= "/categories" exact component={ListCategories}/>
-                <Route path= "/categories/add" exact component={AddCategory}/>
-                <Route path= "/categories/show" exact component={ShowCategory}/>
-                <Route path= "/categories/show-category-posts" exact component={ShowCategoryPosts}/>
-                <Route path= "/login" exact component={Login}/>
-                <Route path= "/logout" exact component={Logout}/>
-                <Route path= "/error-login" exact component={ErrorLogin}/>
-                <Route path= "/register" exact component={Register}/>
+import Home from  './Home/Home'
 
 
 
-                {/* <Route path ="/*" exact component={Error}/> */}
+class App extends React.Component{
 
-            </BrowserRouter>
+    constructor(props){
+        super(props);
 
-        </div>
-    )
-};
+        this.state = {
+            token: localStorage.getItem('tokenLocalStorage') || null
+        }
+
+    }
+
+    setToken(token) {
+
+        this.setState({token: token});
+        localStorage.setItem('tokenLocalStorage', token)
+
+
+    }
+    componentDidUpdate(){
+        this.state = {
+            token: localStorage.getItem('tokenLocalStorage') || null
+        }
+    }
+
+
+    render(){
+
+        return(
+            <div>
+                <BrowserRouter >
+
+                    <Header token = { this.state.token }/>
+
+
+                    <Route path= "/" exact >
+                        <Home token = { this.state.token }   />
+                    </Route>
+                    <Route path= "/posts" exact >
+                        <ListPosts token = { this.state.token }   />
+                    </Route>
+                    <Route path= "/posts/add" exact >
+                        <AddPost token = { this.state.token }  />
+                    </Route>
+                    <Route path= "/posts/show" exact >
+                        <ShowPost token = { this.state.token }  />
+                    </Route>
+                    <Route path= "/categories" exact >
+                        <ListCategories token = { this.state.token } />
+                    </Route>
+                    <Route path= "/categories/add" exact >
+                        <AddCategory token = { this.state.token } />
+                    </Route>
+                    <Route path= "/categories/show" exact >
+                        <ShowCategory token = { this.state.token }  />
+                    </Route>
+                    <Route path= "/categories/show-category-posts" exact >
+                        <ShowCategoryPosts token = { this.state.token }  />
+                    </Route>
+
+                    <Route path= "/login" exact >
+                        <Login token = { this.state.token } setToken={(token)=> this.setToken(token)}  />
+                    </Route>
+
+                    <Route path= "/logout" exact >
+                        <Logout token = { this.state.token } setToken={(token)=> this.setToken(token)}  />
+                    </Route>
+
+                    <Route path= "/register" exact >
+                        <Register token = { this.state.token } setToken={(token)=> this.setToken(token)}  />
+                    </Route>
+
+                    <Route path= "/error-login" exact component={ErrorLogin}/>
+
+                </BrowserRouter>
+
+            </div>
+        )
+    }
+
+
+}
 
 export default App;

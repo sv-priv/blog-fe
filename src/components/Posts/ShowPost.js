@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 class ShowPost extends React.Component{
@@ -15,12 +15,13 @@ class ShowPost extends React.Component{
             CategoryId: this.props.data.CategoryId,
             categoryName: this.props.data.Category.name
         }
-        console.log(this.props.data.title);
 
 
     }
 
     render(){
+
+
 
         return (
 
@@ -31,7 +32,7 @@ class ShowPost extends React.Component{
                     </div>
                     <div className="card-body">
 
-                    <Link to={{ pathname: "/categories/show-category-posts", state: { id: this.state.CategoryId } }}> <h5 style={{ margin: "3%" }} className="card-title"></h5>{this.state.categoryName}</Link>
+                    <Link to={{ pathname: "/categories/show-category-posts",  params: { id: this.state.CategoryId }} }> <h5 className="card-title"> </h5> {this.state.categoryName} </Link>
 
                         {/* <Link to="/categories/show-category-post"> <h5 className="card-title">{this.state.categoryName}</h5></Link> */}
 

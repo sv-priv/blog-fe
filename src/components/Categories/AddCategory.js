@@ -1,20 +1,38 @@
 import React from 'react';
 import axios from 'axios';
-
+import { Link, Redirect } from 'react-router-dom';
 
 
 class AddCategory extends React.Component{
 
+    // static propTypes = {
+    //     match: PropTypes.object.isRequired,
+    //     location: PropTypes.object.isRequired,
+    //     history: PropTypes.object.isRequired
+    //   };
+
+
+
     constructor(props){
         super(props);
 
+
+        const { match, location, history } = this.props;
+
+
         this.state = {
-            name: null
+            name: null,
+            toRedirect: false
         }
+
 
         this.onFormSubmit = this.onFormSubmit.bind(this)
 
     }
+
+    redirectToTarget = () => {
+        this.props.history.push(`/categories`)
+      }
 
     onFormSubmit(event){
 
@@ -25,24 +43,32 @@ class AddCategory extends React.Component{
         });
 
         const name = event.target.elements.name.value;
-        const token = localStorage.getItem('token');
 
 
-        axios.post('https://blog-loka-be.herokuapp.com/api/categories/new', {name}, {
+        axios.post('http://localhost:3000/api/categories/new', {name}, {
              headers: {
-                Authorization: token
+                Authorization: this.props.token
             }
         })
         .then((resp) => {
             console.log(resp);
             console.log("Category created");
-            this.props.history.push("/categories");
+            // this.redirectToTarget();
+            this.setState({toRedirect: true})
         }
         ).catch(e => console.log(e));
 
     }
 
     render(){
+
+        if(!this.props.token){
+            return <Redirect to="/error-login"></Redirect>
+        }
+
+        if(this.state.toRedirect){
+            return <Redirect to ="/categories"></Redirect>
+        }
 
         return (
 

@@ -23,18 +23,22 @@ class Register extends React.Component{
 
         this.setState({
             username: event.target.elements.username.value,
-            password : event.target.elements.password.value
+            password : event.target.elements.password.value,
+            toredirect: false
         })
 
         const username = event.target.elements.username.value;
         const password = event.target.elements.password.value;
         // const token = event.target.elements.token.value;
 
-        axios.post('https://blog-loka-be.herokuapp.com/api/auth/register', { username , password })
+        axios.post('http://localhost:3000/api/auth/register', { username , password })
         .then((resp) => {
-            // console.log(resp.data.token);
-            localStorage.setItem('token', resp.data.token )
-            this.props.history.push("/posts");
+            console.log(resp);
+
+            this.props.setToken(resp.data.token)
+
+            // localStorage.setItem('token', resp.data.token );
+            // this.setState({toredirect: true})
 
         }
         ).catch(e => console.log(e));
@@ -42,6 +46,14 @@ class Register extends React.Component{
 
 
     render(){
+
+        console.log('registeer', this.props.token);
+
+        if(!!this.props.token){
+            return   <Redirect to='/'/>;
+
+
+        }else{
 
         return (
 
@@ -70,6 +82,7 @@ class Register extends React.Component{
 
         )
 
+        }
 
     }
 }

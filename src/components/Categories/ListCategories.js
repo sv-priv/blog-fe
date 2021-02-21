@@ -1,51 +1,43 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import ShowCategory from './ShowCategory';
 
 
 class ListCategories extends React.Component{
-
-
-    componentDidMount(){
-        if(localStorage.getItem('token') !== null){
-
-            this.setState({token : true})
-
-        }
-    }
 
     constructor (props){
 
         super(props);
 
         this.state = {
-            categories: [],
-            token: false
+            categories: []
         }
+    }
+
+    componentDidMount(){
 
 
-
-
-        const token = localStorage.getItem('token');
-
-
-
-        axios.get('https://blog-loka-be.herokuapp.com/api/categories/', {
+        axios.get('http://localhost:3000/api/categories/', {
             headers: {
-                Authorization: token
+                Authorization: this.props.token
             }
         }).then(response =>{
 
                 this.setState({categories: response.data})
-                console.log(this.state.categories);
-                // console.log(response.data);
+                // console.log(this.state.categories);
+
+                // console.log(this.state.token);
         });
     }
 
 
     render(){
 
+
+        if(!this.props.token){
+            return <Redirect to ="/error-login"></Redirect>
+        }else{
 
             return(
 
@@ -62,9 +54,9 @@ class ListCategories extends React.Component{
 
 
                    {
-                        this.state.categories.map((category) => {
+                        this.state.categories.map((category, idx) => {
 
-                          return  <ShowCategory data = { category } />
+                          return  <ShowCategory data = { category } token = { this.props.token } key={ idx } />
                         })
                     }
 
@@ -73,6 +65,7 @@ class ListCategories extends React.Component{
 
             )
         }
+    }
 
 
 }

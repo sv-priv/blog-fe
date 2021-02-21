@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link }  from 'react-router-dom';
-
+import { Link , Redirect }  from 'react-router-dom';
+import Logout from '../Auth/Logout';
 
 //if global token === null don't show header
-
 
 class Header extends React.Component{
 
@@ -12,24 +11,13 @@ class Header extends React.Component{
         super(props);
 
         this.state = {
-            token: false
+            hasToken: false
         }
 
-
-    }
-
-    componentDidUpdate(){
-
-        const token = localStorage.getItem('token');
-
-        if(localStorage.getItem('token') !== null){
-
-            this.setState({token : true})
-
-        }
     }
 
     render(){
+
 
         return (
             <div className="container">
@@ -47,8 +35,20 @@ class Header extends React.Component{
                             <Link to= "/categories" className="navbar-brand" >Categories</Link>
                         </li>
                        </ul>
-                       <Link to="/login"> <button className="btn btn-primary" type="submit">Login</button></Link>
-                        <Link  style= {{ margin:"1%"}} to="/logout"> <button className="btn btn-primary" type="submit">Logout</button></Link>
+
+
+                       {this.props.token ? <Link  style= {{ margin:"%"}} to="/logout"> <button className="btn btn-primary" type="submit">Logout</button></Link> :
+                       <div>
+                       <Link style= {{ margin:"1%"}} to="/register"> <button className="btn btn-primary" type="submit" >Register</button></Link>{"\n"}
+                                {/* <Link to="/login" style= {{ margin:"1%"}} > <button className="btn btn-primary" type="submit" >Login</button></Link> */}
+                        </div>
+                       }
+
+
+
+
+
+
 
 
                    </div>

@@ -24,19 +24,24 @@ class Login extends React.Component{
 
         this.setState({
             username: event.target.elements.username.value,
-            password : event.target.elements.password.value
+            password : event.target.elements.password.value,
+            toredirect: false
         })
 
         const username = event.target.elements.username.value;
         const password = event.target.elements.password.value;
         // const token = event.target.elements.token.value;
 
-        axios.post('https://blog-loka-be.herokuapp.com/api/auth/login', { username , password })
+        axios.post('http://localhost:3000/api/auth/login', { username , password })
         .then((resp) => {
-            // console.log(resp);
-            // console.log(resp.data[0].token);
-            localStorage.setItem('token', resp.data[0].token )
-            this.props.history.push("/posts");
+
+            this.props.setToken( resp.data[0].token );
+
+            // localStorage.setItem('token', resp.data[0].token )
+
+            // this.setState({toredirect: true})
+
+            // this.props.history.push("/posts");
 
         }
         ).catch(e => console.log(e));
@@ -45,7 +50,15 @@ class Login extends React.Component{
 
     render(){
 
+        //this.props.token !== null
+        console.log(this.props.token);
+        if(this.props.token !== null){
+            return   <Redirect to='/posts'/>;
+
+        }else{
+
         return (
+
 
 
             <div  className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center" >
@@ -70,7 +83,7 @@ class Login extends React.Component{
             </div>
 
         )
-
+        }
 
     }
 }

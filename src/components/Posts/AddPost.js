@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link , Redirect} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -9,21 +9,23 @@ class AddPost extends React.Component {
     constructor(props){
         super(props);
 
+
         this.state = {
             title: null,
             content: null,
             category: null,
             data: null,
-            categories: []
+            categories: [],
+            toRedirect: false
         }
         const token = localStorage.getItem('token');
 
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
 
-        axios.get('https://blog-loka-be.herokuapp.com/api/categories/', {
+        axios.get('http://localhost:3000/api/categories/', {
                 headers: {
-                    Authorization: token
+                    Authorization: this.props.token
                 }
             }).then(response =>{
                     this.setState({data: response.data})
@@ -63,23 +65,33 @@ class AddPost extends React.Component {
         const content = event.target.elements.content.value;
         const CategoryId = event.target.elements.category.value;
 
-        const token = localStorage.getItem('token');
 
-        axios.post('https://blog-loka-be.herokuapp.com/api/posts/new', { title, content, CategoryId },{
+        axios.post('http://localhost:3000/api/posts/new', { title, content, CategoryId },{
         headers: {
-            Authorization: token
+            Authorization: this.props.token
         }
         })
         .then((resp) => {
             console.log(resp);
             console.log("Post created");
-            this.props.history.push("/posts");
+            this.setState({toRedirect: true})
         }
         ).catch(e => console.log(e));
 
     }
 
     render(){
+
+        if(!this.props.token){
+            return <Redirect to="/error-login"></Redirect>
+        }
+
+        if(this.state.toRedirect){
+            return <Redirect to ="/posts"></Redirect>
+        }
+
+
+
         return (
             <div className="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center" >
 
@@ -114,8 +126,7 @@ class AddPost extends React.Component {
                     <button className="btn btn-primary text-light">Add</button>
                  </form>
             </div>
-            //when post is added setTimeout to write that a post has been added and redirect to posts page
-            // same for add
+
         );
     }
 }

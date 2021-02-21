@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ShowPost from './ShowPost';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 class ListPosts extends React.Component{
@@ -11,57 +11,38 @@ class ListPosts extends React.Component{
 
         this.state = {
             posts: []
+
         }
-
-        const token = localStorage.getItem('token');
-
-        axios.get('https://blog-loka-be.herokuapp.com/api/posts/', {
-            headers: {
-                Authorization: token
-            }
-        }).then(response =>{
-
-                this.setState({posts: response.data})
-                // console.log(this.state.posts);
-                // console.log(response.data);
-        });
-
-
-
 
     }
 
     componentDidMount(){
 
-        const token = localStorage.getItem('token');
-
-        axios.get('https://blog-loka-be.herokuapp.com/api/posts/', {
-            headers: {
-                Authorization: token
-            }
-        }).then(response =>{
-
-                this.setState({posts: response.data})
-                console.log(this.state.posts);
-                // console.log(response.data);
-        });
-    }
-    // componentDidUpdate(){
     //     const token = localStorage.getItem('token');
 
-    //     axios.get('http://localhost:3000/api/posts/', {
-    //         headers: {
-    //             Authorization: token
-    //         }
-    //     }).then(response =>{
+    console.log("component did mount posts", this.props.token);
+    axios.get('http://localhost:3000/api/posts/', {
 
-    //             this.setState({posts: response.data})
-    //             console.log(this.state.posts);
-    //             // console.log(response.data);
-    //     });
-    // }
+        headers: {
+            Authorization: this.props.token
+        }
+
+    }).then(response =>{
+            // console.log('posts then ', response.data);
+            console.log("component did mount shows posts", response.data);
+            this.setState({posts: response.data})
+
+    });
+
+    }
+
 
     render (){
+
+        console.log(" render list posts");
+        if(!this.props.token){
+            return <Redirect to="/error-login"></Redirect>
+        }
 
         return(
 
@@ -73,9 +54,9 @@ class ListPosts extends React.Component{
             </div>
 
                 {
-                    this.state.posts.map((post) => {
+                    this.state.posts.map((post, idx) => {
 
-                      return  <ShowPost data = { post } />
+                      return  <ShowPost data = { post } key={ idx } />
                     })
                 }
 
@@ -84,25 +65,10 @@ class ListPosts extends React.Component{
 
 
          )
-
-        //  const posts = this.state.data.map({
-
-        //     return(
-        //         <div>
-        //         <ShowPost></ShowPost>
-        //         <ShowPost></ShowPost>
-        //         <ShowPost></ShowPost>
-        //         <ShowPost></ShowPost>
-        //         <ShowPost></ShowPost>
-
-        //         </div>
-
-        //     );
-
-
         };
+    }
 
-}
+
 
 
 export default ListPosts;

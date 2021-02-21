@@ -9,17 +9,23 @@ class Logout extends React.Component{
         super(props);
 
         localStorage.setItem('token', null);
+        // oke
 
     }
 
     render(){
 
+        if(!!this.props.token){
+            this.props.setToken(null)
+        }
 
        return  (
            <div>
                <h3>Logging out..</h3>
 
-        {this.props.history.push("/login")}
+
+               <Redirect to='/login'/>;
+
 
            </div>
 
