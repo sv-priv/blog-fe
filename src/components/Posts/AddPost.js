@@ -66,7 +66,7 @@ class AddPost extends React.Component {
         const CategoryId = event.target.elements.category.value;
 
 
-        axios.post('http://localhost:3000/api/posts/new', { title, content, CategoryId },{
+        axios.post('https://blog-loka-be.herokuapp.com/api/posts/new', { title, content, CategoryId },{
         headers: {
             Authorization: this.props.token
         }

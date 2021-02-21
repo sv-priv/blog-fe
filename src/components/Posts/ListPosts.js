@@ -21,7 +21,7 @@ class ListPosts extends React.Component{
     //     const token = localStorage.getItem('token');
 
     console.log("component did mount posts", this.props.token);
-    axios.get('http://localhost:3000/api/posts/', {
+    axios.get('https://blog-loka-be.herokuapp.com/api/posts/', {
 
         headers: {
             Authorization: this.props.token

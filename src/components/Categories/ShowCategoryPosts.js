@@ -32,7 +32,7 @@ class ShowCategoryPosts  extends React.Component{
         let id= this.props.location.params.id;
         // console.log(id);
 
-        axios.get(`http://localhost:3000/api/categories/category-posts/${id}`, {
+        axios.get(`https://blog-loka-be.herokuapp.com/api/categories/category-posts/${id}`, {
             headers: {
                 Authorization: this.props.token
             }

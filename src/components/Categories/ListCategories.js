@@ -18,7 +18,7 @@ class ListCategories extends React.Component{
     componentDidMount(){
 
 
-        axios.get('http://localhost:3000/api/categories/', {
+        axios.get('https://blog-loka-be.herokuapp.com/api/categories/', {
             headers: {
                 Authorization: this.props.token
             }

@@ -45,7 +45,7 @@ class AddCategory extends React.Component{
         const name = event.target.elements.name.value;
 
 
-        axios.post('http://localhost:3000/api/categories/new', {name}, {
+        axios.post('https://blog-loka-be.herokuapp.com/api/categories/new', {name}, {
              headers: {
                 Authorization: this.props.token
             }
