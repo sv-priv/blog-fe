@@ -23,7 +23,7 @@ class AddPost extends React.Component {
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
 
-        axios.get('http://localhost:3000/api/categories/', {
+        axios.get('https://blog-loka-be.herokuapp.com/api/categories/', {
                 headers: {
                     Authorization: this.props.token
                 }
